@@ -1,0 +1,56 @@
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * This problem was recently asked by Google.
+ *
+ * Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+ *
+ * For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+ *
+ * Bonus: Can you do this in one pass?
+ */
+public class DCP001 {
+
+    static int k;
+    static int[] arr;
+
+    @BeforeAll
+    public static void setUp() {
+         k = 17;
+         arr = new int[]{10, 15, 3, 7};
+    }
+
+    @Test
+    public void checkTwoNumbersAddUpToKTwoPasses() {
+
+        //two passes
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                if (arr[i] + arr[j] == k) {
+                    assertEquals(k, arr[i] + arr[j]);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void checkTwoNumbersAddUpToKOnePass() {
+
+        List<Integer> list = new ArrayList<>(Arrays.asList(10, 15, 3, 7));
+
+        for (int i = 0; i < arr.length; i++) {
+            int num = k - arr[i];
+            list.remove(0);
+
+            if (list.contains(num))
+                assertTrue(list.contains(num));
+        }
+    }
+}
