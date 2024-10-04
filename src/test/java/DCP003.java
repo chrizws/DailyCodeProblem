@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * This problem was asked by Stripe.
  *
@@ -16,6 +18,28 @@ public class DCP003 {
 
     @Test
     public void testFindLowestMissingPositiveInteger() {
+
+        List<Integer> list = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>(List.of(3, 4, -1, 1));
+        int lowestNum = 2;
+
+        int minNum = Collections.min(arr);
+        int maxNum = Collections.max(arr);
+
+        //fill list starting from 1 to maxNum inclusive
+        for (int i = 1; i < maxNum; i++) {
+            list.add(i);
+        }
+
+        //remove the array numbers from list
+        for (Integer i : arr) {
+            list.remove(i);
+        }
+
+        //find the first integer in the list and compare to lowestNum
+        assertEquals(lowestNum, list.get(0));
+
+
 
     }
 
